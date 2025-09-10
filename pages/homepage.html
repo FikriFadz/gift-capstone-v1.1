@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/homepage.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>My App</h1>
+            </div>
+            <nav class="nav">
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="welcome-section">
+                <div class="user-info" id="userInfo">
+                    <div class="avatar" id="userAvatar">
+                        <img src="" alt="User avatar" id="avatarImg">
+                    </div>
+                    <div class="user-details">
+                        <h2 id="userName">Welcome</h2>
+                        <p id="userEmail">Loading user info...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Account Status</h3>
+                    <p id="accountStatus">Active</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Member Since</h3>
+                    <p id="memberSince">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Last Login</h3>
+                    <p id="lastLogin">-</p>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <h3>What would you like to do?</h3>
+                <div class="actions">
+                    <button class="action-btn">Profile Settings</button>
+                    <button class="action-btn">Change Password</button>
+                    <button class="action-btn">Help & Support</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 My App. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../firebase/firebase-config.js"></script>
+    
+    <!-- Homepage Script -->
+    <script src="../script/homepage.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Firebase configuration with actual keys
+script/firebase-config.js
+
+# Other common ignores
+node_modules/
+.DS_Store
+*.log
