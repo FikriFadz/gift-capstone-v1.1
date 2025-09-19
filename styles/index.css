@@ -11,7 +11,11 @@ body {
 }
 
 .background {
-    background-color: #121212; /* Deep black background */
+    background-image: url('https://wallpaperbat.com/img/211864-roadblocks-for-banks-seeking-shared-services-accenture-banking-blog.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
     height: 100vh;
     position: relative;
 }
@@ -29,7 +33,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.1); /* Changed overlay to white with opacity */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,24 +76,24 @@ body {
 }
 
 .login-form {
-    background: rgba(30, 30, 30, 0.1);
+    background: rgba(230, 240, 255, 0.1); /* Subtle blue-tinted background */
     padding: 40px 35px;
     border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(30, 144, 255, 0.2); /* Dodger blue border */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .login-form h1 {
-    color: #FFD700; /* Golden yellow */
+    color: #01284e; /* Blue */
     text-align: center;
     margin-bottom: 35px;
     font-size: 28px;
     font-weight: 400;
     letter-spacing: 1px;
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.2); /* Blue shadow */
 }
 
 .input-group {
@@ -100,24 +104,24 @@ body {
 .input-group input {
     width: 100%;
     padding: 15px 18px;
-    background: rgba(40, 40, 40, 0.8);
-    border: 1px solid rgba(80, 80, 80, 0.6);
+    background: rgba(240, 248, 255, 0.8); /* Light blue background */
+    border: 1px solid rgba(100, 149, 237, 0.6); /* Cornflower blue border */
     border-radius: 8px;
-    color: white;
+    color: #01284e;
     font-size: 16px;
     outline: none;
     transition: all 0.3s ease;
 }
 
 .input-group input::placeholder {
-    color: rgba(255, 215, 0, 0.6);
+    color: rgba(1, 40, 78, 0.6); /* Blue placeholder */
     font-weight: 700;
 }
 
 .input-group input:focus {
-    border-color: rgba(255, 215, 0, 0.5);
-    background: rgba(50, 50, 50, 0.9);
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    border-color: rgba(1, 40, 78, 0.6);
+    background: rgba(220, 235, 255, 0.9);
+    box-shadow: 0 0 8px rgba(1, 40, 78, 0.6);
 }
 
 .password-group {
@@ -131,7 +135,7 @@ body {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: rgba(255, 215, 0, 0.8);
+    color: rgba(1, 40, 78, 0.6); /* Blue */
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -140,7 +144,7 @@ body {
 }
 
 .show-btn:hover {
-    color: #FFD700;
+    color: #01284e;
 }
 
 .forgot-password {
@@ -149,22 +153,22 @@ body {
 }
 
 .forgot-password a {
-    color: rgba(255, 215, 0, 0.8);
+    color: #01284e; /* Blue */
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
 }
 
 .forgot-password a:hover {
-    color: #FFD700;
+    color: #1E90FF;
     text-decoration: underline;
 }
 
 .login-btn {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #121212;
+    background: linear-gradient(135deg, #01284e, #01284e); /* Blue gradient hover */
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -173,13 +177,14 @@ body {
     transition: all 0.3s ease;
     letter-spacing: 1px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
 }
 
 .login-btn:hover {
-    background: linear-gradient(135deg, #FFA500, #FF8C00);
+    
+    background: linear-gradient(135deg, #01284e, #00BFFF); /* Blue gradient */
     transform: translateY(-1px);
-    box-shadow: 0 7px 20px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 7px 20px rgba(30, 144, 255, 0.3);
 }
 
 .divider {
@@ -195,12 +200,12 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: rgba(255, 215, 0, 0.3);
+    background: #01284e; /* Blue divider */
 }
 
 .divider span {
-    background: rgba(30, 30, 30, 0.8);
-    color: rgba(255, 215, 0, 0.8);
+    background: rgba(230, 240, 255, 0.8); /* Light blue */
+    color: #01284e; /* Blue */
     padding: 0 15px;
     font-size: 14px;
     position: relative;
@@ -235,7 +240,7 @@ body {
 .social-btn.google:hover {
     background: whitesmoke;
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.2);
 }
 
 .google-icon {
@@ -247,19 +252,19 @@ body {
 
 .signup-link {
     text-align: center;
-    color: rgba(255, 215, 0, 0.8);
+    color: #01284e; /* Blue */
     font-size: 14px;
 }
 
 .signup-link a {
-    color: #FFD700;
+    color: #01284e; /* Blue */
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .signup-link a:hover {
-    color: #FFA500;
+    color: #00BFFF; /* Lighter blue */
     text-decoration: underline;
 }
 

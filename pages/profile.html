@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - RewardHub</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/profile.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="../firebase/firebase-config.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="container nav-container">
+        <div class="logo">
+          <span>Optima Bank Reward Hub</span>
+        </div>
+
+        <div class="nav-links">
+          <a href="homepage.html">Home</a>
+          <a href="discover.html">Discover</a>
+          <a href="vouchers.html">My Voucher</a>
+          <a href="profile.html" class="active">Profile</a>
+        </div>
+
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="container profile-container">
+      <div class="profile-header">
+        <h1>My Profile</h1>
+        <p>Manage your account settings and view your reward history</p>
+      </div>
+
+      <div class="profile-content">
+        <!-- Profile Info Card -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <img
+              src="https://placeholder-image-service.onrender.com/image/120x120?prompt=User profile picture with modern avatar style&id=97d98e9b-9be8-4e67-8db9-198ac26b030c"
+              alt="User profile avatar showing a person with friendly expression"
+            />
+            <button class="avatar-edit-btn">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+
+          <div class="profile-info">
+            <h2>Loading...</h2>
+            <p class="profile-email">Loading...</p>
+            <p class="profile-joined">Loading...</p>
+
+            <div class="profile-stats">
+              <div class="stat-item">
+                <span class="stat-number">Loading...</span>
+                <span class="stat-label">Points Earned</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">Loading...</span>
+                <span class="stat-label">Vouchers</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">Loading...</span>
+                <span class="stat-label">Offers Used</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Details -->
+        <div class="account-section">
+          <h3>Account Details</h3>
+          <div class="account-details">
+            <div class="detail-row">
+              <span class="detail-label">Full Name</span>
+              <span class="detail-value">Loading...</span>
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Email</span>
+              <span class="detail-value">Loading...</span>
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Phone</span>
+              <span class="detail-value">Loading...</span>
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
+          <h3>Recent Activity</h3>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-gift"></i>
+              </div>
+              <div class="activity-content">
+                <p>Redeemed <strong>50% Off Coffee Delight</strong> voucher</p>
+                <span class="activity-time">2 hours ago</span>
+              </div>
+              <div class="activity-points">-500 pts</div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="activity-content">
+                <p>Earned points from completing survey</p>
+                <span class="activity-time">1 day ago</span>
+              </div>
+              <div class="activity-points positive">+100 pts</div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <div class="activity-content">
+                <p>Made purchase at Fashion Haven</p>
+                <span class="activity-time">2 days ago</span>
+              </div>
+              <div class="activity-points positive">+250 pts</div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-ticket-alt"></i>
+              </div>
+              <div class="activity-content">
+                <p>Redeemed <strong>Free Movie Ticket</strong> voucher</p>
+                <span class="activity-time">5 days ago</span>
+              </div>
+              <div class="activity-points">-800 pts</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logout Section -->
+        <div class="logout-section">
+          <button class="logout-button">Log Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>RewardHub</h3>
+            <p>
+              Your ultimate destination for earning and redeeming rewards.
+              Discover amazing offers and turn your points into exciting
+              vouchers.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="homepage.html">Home</a></li>
+              <li><a href="discover.html">Discover Offers</a></li>
+              <li><a href="vouchers.html">My Voucher</a></li>
+              <li><a href="profile.html">My Profile</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Newsletter</h3>
+            <p>
+              Subscribe to our newsletter to receive updates on new offers and
+              rewards.
+            </p>
+            <form>
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="newsletter-input"
+              />
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2023 RewardHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script/profile.js"></script>
+  </body>
+</html>

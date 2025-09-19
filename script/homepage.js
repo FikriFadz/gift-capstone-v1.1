@@ -1,174 +1,43 @@
-// script/homepage.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the page
-    initHomePage();
+// Mobile menu toggle
+document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+    const mobileMenu = document.querySelector('.nav-links');
+    const authButtons = document.querySelector('.auth-buttons');
     
-    // Set up logout button
-    setupLogoutButton();
-    
-    // Listen for auth state changes
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in
-            loadUserData(user);
-        } else {
-            // User is signed out
-            handleSignOut();
-        }
-    });
+    if (mobileMenu.style.display === 'flex') {
+        mobileMenu.style.display = 'none';
+        authButtons.style.display = 'none';
+    } else {
+        mobileMenu.style.display = 'flex';
+        mobileMenu.classList.add('mobile-menu');
+        authButtons.style.display = 'flex';
+        authButtons.classList.add('mobile-menu');
+    }
 });
 
-// Initialize the homepage
-function initHomePage() {
-    console.log('Homepage initialized');
+// Simple animation for steps on scroll
+function animateOnScroll() {
+    const steps = document.querySelectorAll('.step');
     
-    // Show loading state while checking auth
-    document.body.classList.add('loading');
-}
-
-// Set up logout button
-function setupLogoutButton() {
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', handleLogout);
-    }
-}
-
-// Handle logout
-async function handleLogout() {
-    try {
-        // Show loading state
-        const logoutBtn = document.getElementById('logoutBtn');
-        const originalText = logoutBtn.textContent;
-        logoutBtn.textContent = 'Signing out...';
-        logoutBtn.disabled = true;
+    steps.forEach(step => {
+        const position = step.getBoundingClientRect();
         
-        // Sign out from Firebase
-        await firebase.auth().signOut();
-        
-        console.log('User signed out successfully');
-        
-        // Redirect to login page
-        window.location.href = '../index.html';
-        
-    } catch (error) {
-        console.error('Logout error:', error);
-        alert('Error signing out: ' + error.message);
-        
-        // Reset button state
-        const logoutBtn = document.getElementById('logoutBtn');
-        if (logoutBtn) {
-            logoutBtn.textContent = originalText;
-            logoutBtn.disabled = false;
+        // If step is in viewport
+        if(position.top < window.innerHeight - 100) {
+            step.style.opacity = 1;
+            step.style.transform = 'translateY(0)';
         }
-    }
-}
-
-// Load user data from Firestore
-async function loadUserData(user) {
-    try {
-        // Remove loading state
-        document.body.classList.remove('loading');
-        
-        // Update UI with user info
-        document.getElementById('userName').textContent = user.displayName || 'Welcome';
-        document.getElementById('userEmail').textContent = user.email;
-        
-        // Set user avatar
-        const avatarImg = document.getElementById('avatarImg');
-        if (user.photoURL) {
-            avatarImg.src = user.photoURL;
-        } else {
-            // Default avatar if no photo
-            avatarImg.src = 'https://via.placeholder.com/150/333/FFD700?text=U';
-        }
-        
-        // Get additional user data from Firestore
-        const userDoc = await firebase.firestore().collection('users').doc(user.uid).get();
-        
-        if (userDoc.exists) {
-            const userData = userDoc.data();
-            
-            // Update account status
-            document.getElementById('accountStatus').textContent = 'Active';
-            
-            // Format and display dates
-            if (userData.createdAt) {
-                const memberSince = formatDate(userData.createdAt);
-                document.getElementById('memberSince').textContent = memberSince;
-            }
-            
-            if (userData.lastLogin) {
-                const lastLogin = formatDate(userData.lastLogin);
-                document.getElementById('lastLogin').textContent = lastLogin;
-            }
-        } else {
-            console.log('No additional user data found in Firestore');
-        }
-        
-    } catch (error) {
-        console.error('Error loading user data:', error);
-        alert('Error loading user data: ' + error.message);
-    }
-}
-
-// Format Firebase timestamp
-function formatDate(timestamp) {
-    if (!timestamp) return '-';
-    
-    // Handle different timestamp formats
-    let date;
-    if (timestamp.toDate && typeof timestamp.toDate === 'function') {
-        date = timestamp.toDate();
-    } else if (timestamp instanceof Date) {
-        date = timestamp;
-    } else {
-        return '-';
-    }
-    
-    return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
     });
 }
 
-// Handle sign out (redirect if not authenticated)
-function handleSignOut() {
-    console.log('No user is signed in');
-    
-    // Redirect to login page if not authenticated
-    if (window.location.pathname !== '/index.html' && 
-        !window.location.pathname.endsWith('/index.html')) {
-        window.location.href = '../index.html';
-    }
-}
+// Initialize step animations
+document.querySelectorAll('.step').forEach(step => {
+    step.style.opacity = 0;
+    step.style.transform = 'translateY(20px)';
+    step.style.transition = 'opacity 0.5s, transform 0.5s';
+});
 
-// Add utility function to format dates
-function formatTimestamp(timestamp) {
-    if (!timestamp) return 'N/A';
-    
-    try {
-        let date;
-        if (timestamp && timestamp.toDate) {
-            date = timestamp.toDate();
-        } else if (timestamp instanceof Date) {
-            date = timestamp;
-        } else {
-            return 'N/A';
-        }
-        
-        return new Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        }).format(date);
-    } catch (error) {
-        console.error('Error formatting date:', error);
-        return 'N/A';
-    }
-}
+// Listen for scroll events
+window.addEventListener('scroll', animateOnScroll);
+
+// Initial call in case elements are already in view
+animateOnScroll();

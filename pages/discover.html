@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Offers - RewardHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/discover.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <span>Optima Bank Reward Hub</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="homepage.html">Home</a>
+                <a href="discover.html" class="active">Discover</a>
+                <a href="vouchers.html">My Voucher</a>
+                <a href="profile.html">Profile</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Discover Content -->
+    <div class="container discover-container">
+        <div class="discover-header">
+            <h1>Discover Amazing Offers</h1>
+            <p>Browse through our exclusive collection of rewards and start earning today!</p>
+            
+            <!-- Search and Filter -->
+            <div class="discover-tools">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search offers..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="filter-dropdown">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="travel">Travel</option>
+                        <option value="services">Services</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offers Grid -->
+        <div class="offers-grid" id="offersGrid">
+            <!-- Offer items will be populated by JavaScript -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button class="btn btn-outline" id="loadMoreBtn">Load More Offers</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>RewardHub</h3>
+                    <p>Your ultimate destination for earning and redeeming rewards. Discover amazing offers and turn your points into exciting vouchers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="discover.html">Discover Offers</a></li>
+                        <li><a href="vouchers.html">My Voucher</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to receive updates on new offers and rewards.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address" class="newsletter-input">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 RewardHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script/discover.js"></script>
+</body>
+</html>
