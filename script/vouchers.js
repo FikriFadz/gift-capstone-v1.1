@@ -1,4 +1,4 @@
-// My Voucher Page JavaScript
+// My Voucher Page JavaScript - Updated for new card layout and modal without image
 document.addEventListener('DOMContentLoaded', function () {
   const vouchersGrid = document.getElementById('vouchersGrid');
   const emptyState = document.getElementById('emptyState');
@@ -9,35 +9,39 @@ document.addEventListener('DOMContentLoaded', function () {
   const closeModal = document.querySelector('.close-modal');
   const modalBody = document.querySelector('.modal-body');
 
-  // Sample voucher data (replace with API/localStorage in real app)
-  let vouchers = JSON.parse(localStorage.getItem('userVouchers')) || [
-    {
-      id: 1,
-      title: "10% Off Starbucks",
-      code: "STAR10",
-      description: "Enjoy 10% off on your next Starbucks order.",
-      points: 300,
-      expiry: "2025-12-31",
-      addedDate: "2025-09-10",
-      status: "active"
-    },
-    {
-      id: 2,
-      title: "Free Movie Ticket",
-      code: "MOVIE2025",
-      description: "Get a free cinema ticket at selected outlets.",
-      points: 500,
-      expiry: "2025-11-30",
-      addedDate: "2025-09-15",
-      status: "used"
-    }
-  ];
+  let vouchers = [];
 
-  function init() {
-    updateVoucherStats();
-    renderVouchers('all');
-    setupEventListeners();
-    checkEmptyState();
+  // ✅ Wait until user is signed in
+  firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      await fetchUserVouchers(user.uid);
+      updateVoucherStats();
+      renderVouchers('all');
+      setupEventListeners();
+      checkEmptyState();
+    } else {
+      emptyState.style.display = 'block';
+      vouchersGrid.style.display = 'none';
+    }
+  });
+
+  // 🔹 Fetch from Firestore: users/{uid}/myvouchers
+  async function fetchUserVouchers(userId) {
+    try {
+      const snapshot = await db
+        .collection("users")
+        .doc(userId)
+        .collection("myvouchers")
+        .get();
+
+      vouchers = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+
+    } catch (error) {
+      console.error("Error fetching vouchers:", error);
+    }
   }
 
   function updateVoucherStats() {
@@ -50,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     vouchersGrid.innerHTML = '';
 
     let filteredVouchers = vouchers;
-
     if (tab !== 'all') {
       filteredVouchers = vouchers.filter(voucher => voucher.status === tab);
     }
@@ -69,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Updated card layout: image covers all purple, all text in white below
   function createVoucherCard(voucher) {
     const card = document.createElement('div');
     card.className = 'voucher-card';
@@ -77,16 +81,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const statusClass = `status-${voucher.status}`;
     const statusText = voucher.status.charAt(0).toUpperCase() + voucher.status.slice(1);
 
+    // Format expiry/added date
+    const expiryDate = voucher.expiry
+      ? new Date(voucher.expiry).toISOString().slice(0, 10)
+      : 'N/A';
+    const addedDate = voucher.addedDate
+      ? new Date(voucher.addedDate).toISOString().slice(0, 10)
+      : 'N/A';
+
     card.innerHTML = `
-      <div class="voucher-header">
-        <div class="status-badge ${statusClass}">${statusText}</div>
-        <div class="voucher-icon">
-          <i class="fas fa-ticket-alt"></i>
-        </div>
-        <h3 class="voucher-title">${voucher.title}</h3>
-        <div class="voucher-code">${voucher.code}</div>
+      <div class="voucher-header voucher-header-img" style="background-image: url('${voucher.imageURL || 'https://via.placeholder.com/300x200'}');">
+        <span class="status-badge ${statusClass}">${statusText}</span>
       </div>
       <div class="voucher-content">
+        <h3 class="voucher-title">${voucher.title}</h3>
+        <div class="voucher-code">${voucher.code}</div>
         <p class="voucher-description">${voucher.description}</p>
         <div class="voucher-details">
           <div class="voucher-detail">
@@ -95,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
           <div class="voucher-detail">
             <span class="detail-label">Expires</span>
-            <span class="detail-value">${voucher.expiry}</span>
+            <span class="detail-value">${expiryDate}</span>
           </div>
           <div class="voucher-detail">
             <span class="detail-label">Added</span>
-            <span class="detail-value">${voucher.addedDate}</span>
+            <span class="detail-value">${addedDate}</span>
           </div>
         </div>
         <button class="btn btn-secondary view-btn">View Details</button>
@@ -110,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return card;
   }
 
+  // MODAL: No image in View Details modal
   function openVoucherModal(voucher) {
     modalBody.innerHTML = `
       <h2>${voucher.title}</h2>
@@ -154,6 +164,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-
-  init();
 });

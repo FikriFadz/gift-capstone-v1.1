@@ -168,8 +168,6 @@ nav {
 
 .hero-image img {
     max-width: 100%;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
 }
 
 /* How it works */

@@ -238,11 +238,12 @@ nav {
 
 .vouchers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 25px;
   margin-bottom: 40px;
 }
 
+/* --- Voucher Card Updated Styles --- */
 .voucher-card {
   background-color: var(--card);
   border-radius: var(--radius);
@@ -250,6 +251,9 @@ nav {
   box-shadow: var(--shadow);
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 430px;
 }
 
 .voucher-card:hover {
@@ -257,62 +261,100 @@ nav {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.voucher-header {
+/* Purple header with image covering all */
+.voucher-header.voucher-header-img {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
-  padding: 20px;
-  text-align: center;
+  height: 140px;
   position: relative;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
-.voucher-icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
+/* Status badge over image */
+.status-badge {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.status-active {
+  background-color: #10b981;
+  color: white;
+}
+.status-used {
+  background-color: #64748b;
+  color: white;
+}
+.status-expired {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* All text in white content block below image */
+.voucher-content {
+  padding: 25px 22px 22px 22px;
+  background: #fff;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .voucher-title {
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  color: var(--foreground);
 }
 
 .voucher-code {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-family: monospace;
-  font-size: 0.9rem;
+  background-color: #eaeaff;
+  color: #7272d5;
+  padding: 6px 16px;
+  border-radius: 18px;
+  font-weight: 600;
   display: inline-block;
-  margin-top: 10px;
-}
-
-.voucher-content {
-  padding: 20px;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
 
 .voucher-description {
   color: var(--muted);
-  margin-bottom: 15px;
+  margin-bottom: 9px;
   line-height: 1.5;
 }
 
 .voucher-details {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin: 0 0 10px 0;
+  font-size: 0.98rem;
+  color: #888;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .voucher-detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 7px 0;
   border-bottom: 1px solid var(--border);
 }
 
 .detail-label {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.93rem;
 }
 
 .detail-value {
@@ -320,68 +362,39 @@ nav {
   font-weight: 600;
 }
 
-.voucher-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-use-voucher {
-  flex: 1;
-  background-color: var(--primary);
-  color: white;
+.btn {
+  margin-top: 18px;
+  padding: 8px 22px;
+  border-radius: 10px;
+  background: #f7f7fc;
   border: none;
-  padding: 12px;
-  border-radius: var(--radius);
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  color: #222;
+  transition: background 0.2s;
 }
 
-.btn-use-voucher:hover {
-  background-color: var(--primary-dark);
+.btn-secondary {
+  background: #f7f7fc;
 }
 
-.btn-share {
-  flex: 0 0 50px;
-  background-color: var(--secondary);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn-secondary:hover {
+  background: #eaeaff;
+  color: var(--primary);
 }
 
-.btn-share:hover {
-  background-color: #7c3aed;
+/* --- Responsive for grid --- */
+@media (max-width: 1100px) {
+  .vouchers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  }
 }
-
-/* Status Badges */
-.status-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.status-active {
-  background-color: #10b981;
-  color: white;
-}
-
-.status-used {
-  background-color: #64748b;
-  color: white;
-}
-
-.status-expired {
-  background-color: #ef4444;
-  color: white;
+@media (max-width: 720px) {
+  .vouchers-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 
 /* Empty State */

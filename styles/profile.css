@@ -474,6 +474,18 @@ footer {
   background: #3c1999;
 }
 
+.activity-points {
+  font-weight: bold;
+}
+
+.activity-points.green {
+  color: #2ecc71; /* green for debit */
+}
+
+.activity-points.red {
+  color: #e74c3c; /* red for credit */
+}
+
 
 /* Responsive Design */
 @media (max-width: 900px) {
